@@ -1,12 +1,13 @@
 ﻿using JwtStore.Core.AccountContext.ValueObjects;
-using JwtStore.Core.SharedContext.Entities;
+using JwtStore.Core.Contexts.AccountContext.ValueObjects;
+using JwtStore.Core.Contexts.SharedContext.Entities;
 
-namespace JwtStore.Core.AccountContext.Entities
+namespace JwtStore.Core.Contexts.AccountContext.Entities
 {
     public class User : Entity
     {
         protected User()
-        { 
+        {
         }
 
         public User(string email, string? password = null)
@@ -15,7 +16,7 @@ namespace JwtStore.Core.AccountContext.Entities
             Password = new Password(password);
         }
         public string Name { get; private set; } = null!;
-        public Email Email{ get; private set; } = null!;
+        public Email Email { get; private set; } = null!;
         public Password Password { get; private set; } = null!;
         public string Image { get; private set; } = string.Empty;
 

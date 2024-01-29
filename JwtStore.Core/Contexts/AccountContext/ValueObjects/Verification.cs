@@ -1,10 +1,10 @@
-﻿using JwtStore.Core.SharedContext.ValueObjects;
+﻿using JwtStore.Core.Contexts.SharedContext.ValueObjects;
 
-namespace JwtStore.Core.AccountContext.ValueObjects
+namespace JwtStore.Core.Contexts.AccountContext.ValueObjects
 {
     public class Verification : ValueObject
     {
-        public Verification() 
+        public Verification()
         {
         }
 
@@ -21,7 +21,7 @@ namespace JwtStore.Core.AccountContext.ValueObjects
             if (ExpiresAt < DateTime.UtcNow)
                 throw new Exception("Este código está expirado");
 
-            if (!string.Equals(code.Trim(), StringComparer.CurrentCultureIgnoreCase))
+            if (!Equals(code.Trim(), StringComparer.CurrentCultureIgnoreCase))
                 throw new Exception("Código de verificação inválido");
 
             ExpiresAt = null;
