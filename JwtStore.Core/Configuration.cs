@@ -14,8 +14,8 @@
 
         public class EmailConfiguration
         {
-            public string DefaultFromEmail { get; set; } = "teste@victorschlindwein.com.br";
-            public string DefaultFromName { get; set; } = "teste@victorschlindwein.com.br";
+            public string DefaultFromEmail { get; set; } = "victorwilbert@gmail.com";
+            public string DefaultFromName { get; set; } = "victorwilbert@gmail.com";
         }
 
         public class SendGridConfiguration

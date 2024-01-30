@@ -2,10 +2,11 @@
 using JwtStore.Core.Contexts.AccountContext.Entities;
 using JwtStore.Core.Contexts.AccountContext.UseCases.Create.Contracts;
 using JwtStore.Core.Contexts.AccountContext.ValueObjects;
+using MediatR;
 
 namespace JwtStore.Core.Contexts.AccountContext.UseCases.Create
 {
-    public class Handler
+    public class Handler : IRequestHandler<Request, Response>
     {
         private readonly IRepository _repository;
         private readonly IService _service;
@@ -24,7 +25,7 @@ namespace JwtStore.Core.Contexts.AccountContext.UseCases.Create
 
             try
             {
-                var res = Specification.Ensure(request);
+                 var res = Specification.Ensure(request);
                 if (!res.IsValid)
                     return new Response("Requisição inválida", 400, res.Notifications);
             }
@@ -62,8 +63,9 @@ namespace JwtStore.Core.Contexts.AccountContext.UseCases.Create
                 if (exists)
                     return new Response("Email já cadastrado", 400);
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return new Response("Falha ao verificar Email cadastrado", 500);
             }
 
@@ -75,7 +77,7 @@ namespace JwtStore.Core.Contexts.AccountContext.UseCases.Create
             {
                 await _repository.SaveAsync(user, cancellationToken);
             }
-            catch (Exception e)
+            catch
             {
                 return new Response("Falha ao persistir dados", 500);
             }
