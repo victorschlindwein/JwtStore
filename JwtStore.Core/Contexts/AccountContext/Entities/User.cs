@@ -10,11 +10,19 @@ namespace JwtStore.Core.Contexts.AccountContext.Entities
         {
         }
 
+        public User(string name, Email email, Password password)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+        }
+
         public User(string email, string? password = null)
         {
             Email = email;
             Password = new Password(password);
         }
+
         public string Name { get; private set; } = null!;
         public Email Email { get; private set; } = null!;
         public Password Password { get; private set; } = null!;
