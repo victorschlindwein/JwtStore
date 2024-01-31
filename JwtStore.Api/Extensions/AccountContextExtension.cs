@@ -62,7 +62,8 @@ namespace JwtStore.Api.Extensions
 
                 result.Data.Token = JwtExtension.Generate(result.Data);
                 return Results.Ok(result);
-            });
+            })
+                .AllowAnonymous();
 
             #endregion
         }
